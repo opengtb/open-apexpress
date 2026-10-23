@@ -1,0 +1,23 @@
+{
+  "name": "apexpress",
+  "version": "0.1.0",
+  "description": "Déployez des conteneurs Docker sur Distech ECLYPSE APEX en quelques clics",
+  "license": "MIT",
+  "author": "OpenGTB",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot src/main.ts --no-open",
+    "start": "bun src/main.ts",
+    "test": "bun test",
+    "typecheck": "bun check",
+    "build": "bun scripts/build.ts",
+    "self-test": "bun src/main.ts --self-test"
+  },
+  "dependencies": {
+    "preact": "^11.0.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.3"
+  }
+}

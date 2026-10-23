@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.tmp-cert/
+*.log
+.env
+.DS_Store
+
+# Raw Postman collections from Distech: they hold lab passwords in clear. The Markdown generated from them is versioned.
+docs_API_Distech/*.postman_collection.json
+
+# Référence API Distech générée localement depuis les collections Postman officielles : non publiée.
+docs_API_Distech/
