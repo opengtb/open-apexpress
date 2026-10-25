@@ -72,7 +72,7 @@ Toutes les images ont été vérifiées en ARM64 sur Docker Hub. Les tags sont f
 ## Les outils
 
 - **Sur l'APEX** : liste des conteneurs (état, ports cliquables), démarrer, arrêter, redémarrer, supprimer ; liste des volumes avec suppression protégée (il faut retaper le nom).
-- **Sauvegarder / restaurer un volume** : sans SSH. Un conteneur busybox éphémère archive le volume en `.tar.gz`, téléchargé sur le PC, puis il est supprimé. Les conteneurs qui utilisent le volume sont arrêtés quelques secondes pour des fichiers cohérents, puis relancés. La restauration envoie une archive dans un volume existant ou nouveau (copie d'un APEX à un autre), après vérification de l'archive. Utilise un port libre entre 50990 et 50998.
+- **Sauvegarder / restaurer un volume** : sans SSH. Un conteneur busybox éphémère archive le volume en `.tar.gz`, téléchargé sur le PC, puis il est supprimé. Les conteneurs qui utilisent le volume sont arrêtés quelques secondes pour des fichiers cohérents, puis relancés. La restauration envoie une archive dans un volume existant ou nouveau (copie d'un APEX à un autre), après vérification de l'archive. Utilise un port libre entre 50490 et 50498.
 - **Mettre à jour** : Open Apexpress compare chaque image avec Docker Hub, qu'il s'agisse d'un tag plus récent dans la même version majeure (`2.14.1` → `2.14.2`) ou du même tag republié (`eclipse-mosquitto:2`, comparaison des empreintes ARM64). Une nouvelle version majeure est seulement signalée. La nouvelle image est téléchargée avant de toucher au service, puis le conteneur est recréé avec la même configuration et ses volumes, et l'ancienne image est supprimée. La configuration de chaque conteneur installé est gardée sur le PC (`%APPDATA%\Apexpress\sites`), car l'APEX ne rend pas les variables d'environnement. Sans cette copie, seuls les services qui n'en utilisent pas peuvent être reconstruits.
 - **Tester une image ARM64** : télécharge l'image, la lance avec `--help` et conclut (`exited` = compatible, `restarting` = incompatible), puis nettoie.
 - **Conteneur personnalisé** : collez un JSON « Container Create Options », il est vérifié en direct contre les règles de l'OPA avant d'être déployé.
@@ -83,7 +83,7 @@ Toutes les images ont été vérifiées en ARM64 sur Docker Hub. Les tags sont f
 
 Le plugin d'autorisation OPA de l'APEX refuse beaucoup de choses. Chaque conteneur généré respecte ce qui a été constaté sur le terrain :
 
-- ports hôtes dans la plage **50000-50999** (50880 a déjà été refusé) ;
+- ports hôtes dans la plage **50000-50500** (50880 a déjà été refusé) ;
 - chaque port publié présent dans **`ExposedPorts`** ;
 - volumes nommés via **`Mounts`**, jamais de `Binds` ;
 - **`"CpusetCpus": "0"`** : un cœur pour les conteneurs, la régulation garde les autres ;

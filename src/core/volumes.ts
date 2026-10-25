@@ -11,7 +11,7 @@ import type { CreateOptions, L10n } from "../recipes/types";
 export const HELPER_IMAGE = "busybox:1.36";
 export const BACKUP_CONTAINER = "apexpress-backup";
 export const RESTORE_CONTAINER = "apexpress-restore";
-const HELPER_PORTS = [50998, 50997, 50996, 50995, 50994, 50993, 50992, 50991, 50990];
+const HELPER_PORTS = [50498, 50497, 50496, 50495, 50494, 50493, 50492, 50491, 50490];
 export const VOLUME_RE = /^[a-zA-Z0-9][a-zA-Z0-9_.-]*$/;
 
 const l10n = (fr: string, en: string): L10n => ({ fr, en });
@@ -51,7 +51,7 @@ export function helperOptions(volume: string, port: number, command: string): Cr
 export function freeHelperPort(containers: ContainerInfo[]): number {
   const used = new Set(containers.flatMap((c) => c.hostPorts));
   const port = HELPER_PORTS.find((p) => !used.has(p));
-  if (!port) throw new ApexError("http", "No free helper port in 50990-50998");
+  if (!port) throw new ApexError("http", "No free helper port in 50490-50498");
   return port;
 }
 
@@ -142,8 +142,8 @@ export async function waitForHelper(
   }
   throw new HelperError(
     l10n(
-      `Pas de réponse de l'APEX sur ${new URL(url).host}. Un pare-feu bloque-t-il les ports 50990-50998 entre ce PC et l'APEX ?`,
-      `No answer from the APEX on ${new URL(url).host}. Does a firewall block ports 50990-50998 between this PC and the APEX?`,
+      `Pas de réponse de l'APEX sur ${new URL(url).host}. Un pare-feu bloque-t-il les ports 50490-50498 entre ce PC et l'APEX ?`,
+      `No answer from the APEX on ${new URL(url).host}. Does a firewall block ports 50490-50498 between this PC and the APEX?`,
     ),
   );
 }

@@ -156,14 +156,14 @@ describe("runner", () => {
 
   test("a running container whose web UI never answers is a warning", async () => {
     const { client } = setup();
-    // FileBrowser publishes 50777 on 127.0.0.1: nothing listens there until we start a server.
-    const plan = buildPlan({ selection: { filebrowser: { hostPort: 50777 } }, apexIp: "127.0.0.1" });
+    // FileBrowser publishes 50477 on 127.0.0.1: nothing listens there until we start a server.
+    const plan = buildPlan({ selection: { filebrowser: { hostPort: 50477 } }, apexIp: "127.0.0.1" });
     const silent = await deploy(client, plan, { webCheckSeconds: 1 });
     expect(silent.done.counts.warning).toBe(1);
     const warning = silent.events.find((e) => e.type === "step" && e.phase === "done");
     expect(warning).toMatchObject({ status: "warning" });
 
-    const web = Bun.serve({ port: 50777, hostname: "127.0.0.1", fetch: () => new Response("ok") });
+    const web = Bun.serve({ port: 50477, hostname: "127.0.0.1", fetch: () => new Response("ok") });
     try {
       const { client: again } = setup();
       const answered = await deploy(again, plan, { webCheckSeconds: 2 });

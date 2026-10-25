@@ -11,8 +11,14 @@ const info = (name: string, state = "running", hostPorts: number[] = [], raw: un
 
 describe("volume helpers", () => {
   test("helper containers pass the OPA rules", () => {
-    expect(lintContainer("apexpress-backup", helperOptions("z2m-data", 50998, backupCommand("k")))).toEqual([]);
-    expect(lintContainer("apexpress-restore", helperOptions("z2m-data", 50998, restoreCommand("k")))).toEqual([]);
+    expect(lintContainer("apexpress-backup", helperOptions("z2m-data", 50498, backupCommand("k")))).toEqual([]);
+    expect(lintContainer("apexpress-restore", helperOptions("z2m-data", 50498, restoreCommand("k")))).toEqual([]);
+  });
+
+  test("a host port above 50500 is rejected by the linter", () => {
+    const issues = lintContainer("apexpress-backup", helperOptions("z2m-data", 50501, backupCommand("k")));
+    expect(issues.some((i) => i.level === "error")).toBe(true);
+    expect(lintContainer("apexpress-backup", helperOptions("z2m-data", 50500, backupCommand("k")))).toEqual([]);
   });
 
   test("users of a volume come from the APEX answer, or from the catalog defaults", () => {
@@ -29,7 +35,7 @@ describe("volume helpers", () => {
   });
 
   test("the helper port avoids ports already published", () => {
-    expect(freeHelperPort([info("a", "running", [50998, 50997])])).toBe(50996);
+    expect(freeHelperPort([info("a", "running", [50498, 50497])])).toBe(50496);
   });
 });
 

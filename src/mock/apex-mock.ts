@@ -99,7 +99,7 @@ export function startMockApex(opts: MockOptions = {}) {
       for (const b of bindings) {
         if (!b.HostPort) continue;
         const p = Number(b.HostPort);
-        if (p < 50000 || p > 50999 || p === 50880) return POLICY;
+        if (p < 50000 || p > 50500 || p === 50880) return POLICY;
       }
     }
     for (const m of hc.Mounts ?? []) if (m.Type !== "volume") return POLICY;

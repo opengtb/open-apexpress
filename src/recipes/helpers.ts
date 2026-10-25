@@ -97,8 +97,8 @@ export const hostPortParam = (port: number, label = t("Port sur l'APEX", "Port o
   id: "hostPort",
   label,
   help: t(
-    "Port publié sur l'APEX. L'OPA n'accepte que la plage 50000-50999.",
-    "Port published on the APEX. The OPA plugin only accepts the 50000-50999 range.",
+    "Port publié sur l'APEX. L'OPA n'accepte que la plage 50000-50500.",
+    "Port published on the APEX. The OPA plugin only accepts the 50000-50500 range.",
   ),
   type: "number",
   default: port,

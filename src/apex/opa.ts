@@ -10,7 +10,7 @@ export interface Issue {
 }
 
 export const HOST_PORT_MIN = 50000;
-export const HOST_PORT_MAX = 50999;
+export const HOST_PORT_MAX = 50500;
 /** Host ports seen rejected by the OPA plugin in the field. */
 const KNOWN_REJECTED_PORTS = new Set([50880]);
 const NAME_RE = /^[a-z0-9][a-z0-9_.-]*$/;
