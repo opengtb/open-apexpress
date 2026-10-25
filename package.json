@@ -1,6 +1,6 @@
 {
   "name": "apexpress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Déployez des conteneurs Docker sur Distech ECLYPSE APEX en quelques clics",
   "license": "MIT",
   "author": "OpenGTB",
